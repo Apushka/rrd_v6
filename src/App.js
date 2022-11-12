@@ -69,11 +69,6 @@ const MainPage = () => {
   return <h1>Main Page</h1>;
 };
 
-const CustomNavigate = () => {
-  const { userId } = useParams();
-  return <Navigate to={`/users/${userId}/profile`} />;
-};
-
 const routes = [
   { path: "/", element: <MainPage /> },
   {
@@ -84,10 +79,10 @@ const routes = [
       {
         path: ":userId",
         children: [
-          { path: "", element: <CustomNavigate /> },
+          { path: "", element: <Navigate to="profile" /> },
           { path: "profile", element: <UserInfoPage /> },
           { path: "edit", element: <EditUserPage /> },
-          { path: "*", element: <CustomNavigate /> },
+          { path: "*", element: <Navigate to="profile" /> },
         ],
       },
     ],
@@ -97,6 +92,7 @@ const routes = [
 
 function App() {
   const elements = useRoutes(routes);
+
   return (
     <>
       <h1>App Layout</h1>
